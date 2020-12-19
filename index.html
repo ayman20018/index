@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <link href='style.css' rel="stylesheet">
+<script type="text/javascript" src="javascript.js"></script>
+</head>
+<body>
+    <section id='containers'>
+        <div class='container active'>
+            <img src='https://i.pinimg.com/originals/5e/93/6b/5e936be5cd6a860f1093824db6b8f29e.jpg
+            '>
+            <div class='text'>
+                <h1>Miami</h1>
+                <p>Miami is one of South Florida's premier vacation destinations, with beaches, great weather, history, culture, sports, and entertainment. Downtown Miami, separated from the Atlantic Ocean by the Biscayne Bay and Miami Beach, is a modern metropolis and cultural treasure trov</p>
+            </div>
+        </div>
+        <div class='container'>
+            <img src='https://images.wallpapersden.com/image/download/la-cityscape-in-infrared_a2hrbGWUmZqaraWkpJRobWllrWdma2U.jpg'>
+            <div class='text'>
+                <h1>Los Angeles</h1>
+                <p>Los Angeles is known for its Mediterranean climate, ethnic diversity, Hollywood entertainment industry, and its sprawling metropolis. Los Angeles lies in a basin in Southern California, adjacent to the Pacific Ocean, with mountains as high as 10,000 feet (3,000 m), and deserts.</p>
+            </div>
+        </div>
+        <div class='container'>
+            <img src='https://free4kwallpapers.com/uploads/originals/2020/05/29/midtown-manhattan-new-york-wallpaper.jpg'>
+            <div class='text'>
+                <h1>New York City</h1>
+                <p>The city's community dominance, expanding entire things from Magnificent nightclubs and extensive arts and culture along with places that reflect the history and gorgeous architecture. Here is the complete guide of what makes New York City famous.</p>
+            </div>
+        </div>
+    </section>
+    <div class='buttons'>
+        <a id='previous'>&#10094;</a>
+        <a id='next' >&#10095;</a>
+    </div>
+    <form id='newImage' action='formsender.php' method='post'>
+        <input id='url' type='url' name='url' required>
+        <input id='title' type='text' name='title' required>
+        <input id='paragraph' type='text' name='paragraph' required>
+        <input id='add' type='submit' value='submit'>
+    </from>
+<script>function addpic() { 
+            var img = document.createElement('img');
+            var title = document.createElement('h1');
+            var p = document.createElement('p')
+            var container = document.createElement('div'); 
+            var text = document.createElement('div')
+            text.classList.add('text')
+            container.classList.add('container')
+            img.src =  document.getElementById('url').value; 
+            title.innerHTML=document.getElementById('title').value;
+            p.innerHTML=document.getElementById('paragraph').value;
+            document.getElementById('containers').appendChild(container).appendChild(img);
+            container.appendChild(text)
+            text.appendChild(title)
+            text.appendChild(p)}
+        document.getElementById('add').addEventListener('click',addpic)  
+        let i=1
+        const slides = document.getElementsByClassName('container')
+        const slide = () => {
+            if(i === slides.length) {
+                slides[i-1].classList.remove('active')
+                slides[0].classList.add('active')
+                i=1
+                }
+            else if (i === 0) {
+                slides[1].classList.add('active')
+                slides[0].classList.remove('active')
+                i=1
+            }
+            else {    
+            slides[i-1].classList.remove('active')
+            slides[i++].classList.add('active')}
+        }
+        const unslide = () => {
+            if(i === 0) {
+                slides[0].classList.remove('active')
+                slides[slides.length-1].classList.add('active')
+                i = slides.length-1}
+            else{
+            slides[i-1].classList.add('active')
+            slides[i--].classList.remove('active')}
+        }
+        document.getElementById('next').addEventListener('click', slide)
+        document.getElementById('previous').addEventListener('click',unslide)</script></body>
